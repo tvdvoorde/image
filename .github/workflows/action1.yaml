@@ -10,7 +10,7 @@ jobs:
       - name: Docker Login
         uses: docker/login-action@v1.8.0
         with:
-          registry: tvdvoorde
+          registry: hub.docker.com
           username: tvdvoorde
-          password: xxxxx
+          password: ${{ secrets.DOCKERPW }}
       
