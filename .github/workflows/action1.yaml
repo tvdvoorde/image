@@ -10,10 +10,10 @@ jobs:
       - name: Docker Login
         uses: docker/login-action@v1.8.0
         with:
-          username: tvdvoorde
+          username: ${{ secrets.REGISTRY }}
           password: ${{ secrets.DOCKERPW }}
-      - run: docker build . -t tvdvoorde/sample:$GITHUB_RUN_NUMBER
-      - run: docker push tvdvoorde/sample:$GITHUB_RUN_NUMBER
+      - run: docker build . -t ${{ secrets.REGISTRY }}/sample:$GITHUB_RUN_NUMBER
+      - run: docker push ${{ secrets.REGISTRY }}/sample:$GITHUB_RUN_NUMBER
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -29,7 +29,7 @@ jobs:
           subscriptionId: ${{ secrets.SUBSCRIPTION }}
           resourceGroupName: rggithubtest
           template: ./arm/aci.json
-          parameters: name=test image=tvdvoorde/sample:${{ github.run_number }}
+          parameters: name=test image=${{ secrets.REGISTRY }}/sample:${{ github.run_number }}
       - run: echo ${{ steps.deploy.outputs.containerIPv4Address }}
 
 
