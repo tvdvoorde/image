@@ -12,8 +12,8 @@ jobs:
         with:
           username: tvdvoorde
           password: ${{ secrets.DOCKERPW }}
-      - run: docker build . -t tvdvoorde/sample:$GITHUB_RUN_NUMBER
-      - run: docker push tvdvoorde/sample:$GITHUB_RUN_NUMBER
+      - run: docker build . -t tvdvoorde/sample:latest
+      - run: docker push tvdvoorde/sample:latest
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -29,7 +29,7 @@ jobs:
           subscriptionId: ${{ secrets.SUBSCRIPTION }}
           resourceGroupName: rggithubtest
           template: ./arm/aci.json
-          parameters: name=githubtest3 image=tvdvoorde/sample:${{ GITHUB_RUN_NUMBER }}
+          parameters: name=githubtest4 image=tvdvoorde/sample:latest
           
 
 
