@@ -29,7 +29,7 @@ jobs:
           subscriptionId: ${{ secrets.SUBSCRIPTION }}
           resourceGroupName: rggithubtest
           template: ./arm/aci.json
-          parameters: name=githubtest image=tvdvoorde/sample:${{ github.run_number }}
+          parameters: name=test image=tvdvoorde/sample:${{ github.run_number }}
       - run: echo ${{ steps.deploy.outputs.containerIPv4Address }}
 
 
