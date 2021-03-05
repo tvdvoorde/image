@@ -20,3 +20,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: printenv    
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.CREDENTIALS }}
+      - name: Run ARM deploy
+        uses: azure/arm-deploy@v1
+        with:
+          subscriptionId: ${{ secrets.SUBSCRIPTION }}
+          resourceGroupName: rggithubtest
+          template: ./arm/aci.json
+          parameters: name=githubtest,image=tvdvoorde/sample:$GITHUB_RUN_NUMBER
+          
+
+
