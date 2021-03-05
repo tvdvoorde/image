@@ -24,11 +24,12 @@ jobs:
           creds: ${{ secrets.CREDENTIALS }}
       - name: Run ARM deploy
         uses: azure/arm-deploy@v1
+        id: deploy
         with:
           subscriptionId: ${{ secrets.SUBSCRIPTION }}
           resourceGroupName: rggithubtest
           template: ./arm/aci.json
           parameters: name=githubtest4 image=tvdvoorde/sample:${{ github.run_number }}
-          
+      - run: echo ${{ steps.deploy.outputs.containerIPv4Address }}
 
 
