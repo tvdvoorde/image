@@ -12,4 +12,5 @@ jobs:
         with:
           username: tvdvoorde
           password: ${{ secrets.DOCKERPW }}
+      - run: docker build . -t tvdvoorde/sample:1
       
