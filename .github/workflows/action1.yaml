@@ -15,6 +15,7 @@ jobs:
       - run: docker build . -t tvdvoorde/sample:$GITHUB_RUN_NUMBER
       - run: docker push tvdvoorde/sample:$GITHUB_RUN_NUMBER
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
