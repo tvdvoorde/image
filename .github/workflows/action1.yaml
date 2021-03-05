@@ -12,5 +12,6 @@ jobs:
         with:
           username: tvdvoorde
           password: ${{ secrets.DOCKERPW }}
-      - run: docker build . -t tvdvoorde/sample:1
+      - run: docker build . -t tvdvoorde/sample:$GITHUB_RUN_NUMBER
+      - run: docker push tvdvoorde/sample:$GITHUB_RUN_NUMBER
       
