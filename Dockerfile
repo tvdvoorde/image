@@ -1,1 +1,2 @@
-FROM ubuntu
+FROM nginx
+COPY *.html /usr/share/nginx/html

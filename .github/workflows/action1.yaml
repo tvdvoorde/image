@@ -29,7 +29,7 @@ jobs:
           subscriptionId: ${{ secrets.SUBSCRIPTION }}
           resourceGroupName: rggithubtest
           template: ./arm/aci.json
-          parameters: name=githubtest2 image=tvdvoorde/sample:$GITHUB_RUN_NUMBER
+          parameters: name=githubtest3 image=tvdvoorde/sample:${{ env.GITHUB_RUN_NUMBER }}
           
 
 
