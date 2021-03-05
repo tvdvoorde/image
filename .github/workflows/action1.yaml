@@ -1,5 +1,5 @@
 name: action1
-on: []
+on: [pull_request]
 jobs:
   basicinfo:
     runs-on: ubuntu-latest
