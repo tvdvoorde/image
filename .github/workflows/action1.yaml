@@ -1,5 +1,5 @@
 name: action1
-on: 
+on: []
 jobs:
   basicinfo:
     runs-on: ubuntu-latest
