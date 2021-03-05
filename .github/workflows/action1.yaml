@@ -1,7 +1,7 @@
 name: action1
 on: [push]
 jobs:
-  basicinfo:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -14,4 +14,8 @@ jobs:
           password: ${{ secrets.DOCKERPW }}
       - run: docker build . -t tvdvoorde/sample:$GITHUB_RUN_NUMBER
       - run: docker push tvdvoorde/sample:$GITHUB_RUN_NUMBER
-      
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: printenv    
