@@ -13,6 +13,17 @@ jobs:
           password: ${{ secrets.DOCKERPW }}
       - run: docker build . -t ${{ secrets.REGISTRY }}/sample:$GITHUB_RUN_NUMBER
       - run: docker push ${{ secrets.REGISTRY }}/sample:$GITHUB_RUN_NUMBER
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: '${{ secrets.REGISTRY }}/sample:$GITHUB_RUN_NUMBER'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'      
+
+      
   deploy:
     needs: build
     runs-on: ubuntu-latest
