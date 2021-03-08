@@ -1,3 +1,2 @@
-FROM nginx
-RUN apk update -y openssl openssl-dev
+FROM nginx:1.19.7-alpine
 COPY *.html /usr/share/nginx/html
